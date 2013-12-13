@@ -22,7 +22,7 @@ class App < Sinatra::Application
 
   helpers do
     def winner(hash)
-      array = hash.sort
+      array = hash.sort.reverse
       if array[0][1] == array[1][1]
         return "Rainbow"
       else

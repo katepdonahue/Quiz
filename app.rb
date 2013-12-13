@@ -9,6 +9,13 @@ class App < Sinatra::Application
   end
 
   post '/result' do
+    array = []
+    hash = {}
+    params.each {|k, v| array << v}
+    array.each do |elt|
+      hash[elt] = array.count(elt)
+    end
+    @result = hash.max_by{|k,v| v}
     erb :result
   end
  

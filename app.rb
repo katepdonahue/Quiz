@@ -20,10 +20,22 @@ class App < Sinatra::Application
     puts hash.keys
     @result = hash.keys[0] if hash.count == 1
     puts "result is #{@result}"
-    @result ||= hash.max_by{|k,v| v}[0]
+    @result ||= winner(hash)
     # if hash.max_by{|k,v| v} first two keys are the same, puts rainbow ranger
     puts @result
     erb :result
+  end
+
+  helpers do
+    def winner(hash)
+      array = hash.sort
+      if array[0][1] == array[1][1]
+        return "Rainbow"
+      else
+        return array[0][0]
+      end
+    end
+
   end
  
 end

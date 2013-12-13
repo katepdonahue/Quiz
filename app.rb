@@ -11,6 +11,7 @@ class App < Sinatra::Application
   post '/result' do
     array = []
     hash = {}
+    return erb :error if params == {}
     params.each {|k, v| array << v; hash[v] = 0}
     hash.each do |k, v|
       hash[k] = array.count(k)
